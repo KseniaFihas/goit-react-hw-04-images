@@ -4,17 +4,26 @@ import css from './ImageGallery.module.css';
 
 export const ImageGallery = ({ images, onImageClick }) => (
   <ul className={css.ImageGallery}>
-    {images.map((image, index) => (
-      <ImageGalleryItem onClick={onImageClick} images={image} key={index} />
-    ))}   
-      </ul>
-  );
-
+    {images.map(({ id, webformatURL, largeImageURL }) => (
+      <ImageGalleryItem
+        key={id}
+        webformatURL={webformatURL}
+        largeImageURL={largeImageURL}
+        onImageClick={onImageClick}
+      />
+    ))}
+  </ul>
+);
 
 ImageGallery.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.shape({
-    id:PropTypes.number.isRequired,
-  })
+  images: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      webformatURL: PropTypes.string,
+      largeImageURL: PropTypes.string,
+    })
   ),
-  onImageClick: PropTypes.func.isRequired,
+  onImageClick: PropTypes.func,
 };
+
+export default ImageGallery;

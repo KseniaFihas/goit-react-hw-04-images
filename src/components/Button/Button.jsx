@@ -1,14 +1,17 @@
 import css from './Button.module.css';
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
 
-export const Button = ({ clickLoad }) => {
+const Button = ({ label, handleLoadMore }) => {
   return (
-    <button onClick={clickLoad} className={css.Button} type="button">
-      load more
+    <button onClick={handleLoadMore} className={css.Button} type="button">
+      {label}
     </button>
   );
 };
 
 Button.propTypes = {
-  clickLoad: PropTypes.func.isRequired,
+  label: PropTypes.string,
+  handleLoadMore: PropTypes.func.isRequired,
 };
+
+export default Button;
